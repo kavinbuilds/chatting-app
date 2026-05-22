@@ -1,7 +1,6 @@
 import streamlit as st
 from datetime import datetime
 import sqlite3
-from streamlit_autorefresh import st_autorefresh
 
 # Connect to the SQLite database
 conn=sqlite3.connect('chat.db')
@@ -12,7 +11,6 @@ conn.commit()
 st.set_page_config(page_title="boss chat 🗣️", page_icon=":speech_balloon:", layout="centered")
 st.markdown("<h1 style='text-align: center; color: #4A90E2;'>Welcome to Boss Chat 🗣️</h1>", unsafe_allow_html=True)
 # Auto-refresh every 5 seconds to update the chat messages
-st_autorefresh(interval=5000,key="refresh")
 # Get the username from the user
 user=st.selectbox("select the username",["kavin😎","mano boss😎","dinesh bhai😎"])
 messages=c.execute("select username,message,time from chat order by id desc").fetchall()
