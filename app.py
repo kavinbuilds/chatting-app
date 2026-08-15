@@ -122,4 +122,20 @@ if st.button("send", key="send",type="primary",use_container_width=True,width="s
         c.execute("insert into chat(username,message,audio,image,time) values(?,?,?,?,?)", (user,message,audio_path,image_path,time))
         conn.commit()
         st.rerun()
+if st.button("🗑️ Clear Chat",key="delete",type="secondary"):
+
+    st.warning("This will delete all messages!")
+
+    if st.button("Yes, delete everything", type="primary"):
+
+        c.execute("DELETE FROM chat")
+        conn.commit()
+
+        for filename in os.listdir("uploads"):
+            filepath = os.path.join("uploads", filename)
+
+            if os.path.isfile(filepath):
+                os.remove(filepath)
+
+        st.rerun()
         
