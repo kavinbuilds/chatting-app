@@ -30,8 +30,6 @@ user=st.selectbox("select the username",["kavin😎","mano boss😎","dinesh bha
 messages=c.execute("select username,message,audio,image,time from chat order by id desc").fetchall()
 chat_box = st.container(height=500, border=True)
 
-chat_box = st.container(height=500, border=True)
-
 with chat_box:
 
     for username, message, audio, image, time in messages:
