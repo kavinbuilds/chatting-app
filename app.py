@@ -8,8 +8,24 @@ conn=sqlite3.connect('chat.db')
 c=conn.cursor()
 os.makedirs("uploads",exist_ok=True)
 #create the table that sores the user , message and tiime of message
-c.execute("DROP TABLE IF EXIST CHAT")
-c.execute('''CREATE TABLE IF NOT EXISTS CHAT(ID INTEGER PRIMARY KEY AUTOINCREMENT,USERNAME TEXT,MESSAGE TEXT,AUDIO TEXT,IMAGE TEXT,TIME TEXT)''')
+conn = sqlite3.connect("chat.db")
+c = conn.cursor()
+
+# Delete old table
+c.execute("DROP TABLE IF EXISTS CHAT")
+
+# Create new table
+c.execute("""
+    CREATE TABLE CHAT(
+        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        USERNAME TEXT,
+        MESSAGE TEXT,
+        AUDIO TEXT,
+        IMAGE TEXT,
+        TIME TEXT
+    )
+""")
+
 conn.commit()
 st.set_page_config(page_title="boss chat 🗣️", page_icon=":speech_balloon:", layout="centered")
 st.markdown("<h1 style='text-align: center; color: #4A90E2;'>Welcome to Boss Chat 🗣️</h1>", unsafe_allow_html=True)
