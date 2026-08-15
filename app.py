@@ -122,20 +122,42 @@ if st.button("send", key="send",type="primary",use_container_width=True,width="s
         c.execute("insert into chat(username,message,audio,image,time) values(?,?,?,?,?)", (user,message,audio_path,image_path,time))
         conn.commit()
         st.rerun()
-if st.button("🗑️ Clear Chat",key="delete",type="secondary"):
+# Clear chat
+if st.button("🗑️ Clear Chat", key="delete", type="secondary"):
 
-    st.warning("This will delete all messages!")
+    st.session_state.confirm_delete = True
 
-    if st.button("Yes, delete everything", type="primary"):
 
-        c.execute("DELETE FROM chat")
-        conn.commit()
+if st.session_state.get("confirm_delete", False):
 
-        for filename in os.listdir("uploads"):
-            filepath = os.path.join("uploads", filename)
+    st.warning("⚠️ This will delete all messages and uploaded files!")
 
-            if os.path.isfile(filepath):
-                os.remove(filepath)
+    col1, col2 = st.columns(2)
 
-        st.rerun()
+    with col1:
+        if st.button("Yes, delete everything", type="primary"):
+
+            # Delete messages from database
+            c.execute("DELETE FROM chat")
+            conn.commit()
+
+            # Delete uploaded audio/images
+            for filename in os.listdir("uploads"):
+
+                filepath = os.path.join("uploads", filename)
+
+                if os.path.isfile(filepath):
+                    os.remove(filepath)
+
+            # Hide confirmation
+            st.session_state.confirm_delete = False
+
+            # Refresh
+            st.rerun()
+
+    with col2:
+        if st.button("Cancel"):
+
+            st.session_state.confirm_delete = False
+            st.rerun()
         
