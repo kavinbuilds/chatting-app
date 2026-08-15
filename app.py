@@ -14,9 +14,9 @@ st.markdown("<h1 style='text-align: center; color: #4A90E2;'>Welcome to Boss Cha
 # Get the username from the user
 user=st.selectbox("select the username",["kavin😎","mano boss😎","dinesh bhai😎"])
 messages=c.execute("select username,message,time from chat order by id desc").fetchall()
-for username,message,time in messages:
+for username,message,audio,image,time in messages:
     if username==user:
-        if username == user:
+        if message:
             st.markdown(
             f"""
             <div style='text-align:right;
@@ -31,6 +31,36 @@ for username,message,time in messages:
             """,
             unsafe_allow_html=True
         )
+        if audio:
+            st.markdown(
+            f"""
+            <div style='text-align:right;
+                        background-color:#DCF8C6;
+                        padding:10px;
+                        border-radius:10px;
+                        margin:5px'>
+                <b>{username}</b><br>
+                {st.audio(audio)}<br>
+                <small>{time}</small>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )  
+        if image:
+            st.markdown(
+            f"""
+            <div style='text-align:right;
+                        background-color:#DCF8C6;
+                        padding:10px;
+                        border-radius:10px;
+                        margin:5px'>
+                <b>{username}</b><br>
+                {st.image(image,width=250)}<br>
+                <small>{time}</small>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )  
     else:
         st.markdown(
             f"""
@@ -49,9 +79,13 @@ for username,message,time in messages:
         st.markdown("---")
 # Input for the user to send a message
 message=st.text_input("Type your message here")
+voice=st.audio_input("record your audio ;")
+image=st.uploader("share your image :",type=["jpeg","jpg","png")
 if st.button("send", key="send",type="primary",use_container_width=True,width="stretch"):
     if message.strip()!="":
         time=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         c.execute("insert into chat(username,message,time) values(?,?,?)", (user, message, time))
         conn.commit()
         st.rerun()
+    if image:
+        
