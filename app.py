@@ -65,16 +65,7 @@ with chat_box:
 
             # Text
             if message:
-                st.markdown(
-                    f"""
-                    <div style="text-align:{alignment};
-                                padding:5px;">
-                        {message}
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
-
+               add_message("user", message, avatar="🧑‍💻")
             # Audio
             if audio:
                 st.audio(audio)
@@ -85,7 +76,7 @@ with chat_box:
 # Input for the user to send a message
 with chat(key="my_chat"):
     if message:= st.chat_input():
-        add_message("user", message, avatar="🧑‍💻")
+        
 audio=st.audio_input("record your audio ;")
 image=st.file_uploader("share your image :",type=["jpeg","jpg","png"])
 if st.button("send", key="send",type="primary",use_container_width=True,width="stretch"):
