@@ -30,43 +30,40 @@ st.markdown("<h1 style='text-align: center; color: #4A90E2;'>Welcome to Boss Cha
 # Get the username from the user
 user=st.selectbox("select the username",["kavin😎","mano boss😎","dinesh bhai😎"])
 messages=c.execute("select username,message,audio,image,time from chat order by id desc").fetchall()
-for username,message,audio,image,time in messages:
-    if username==user:
+chat_box = st.container(height=500, border=True)
+
+with chat_box:
+
+    for username, message, audio, image, time in messages:
+
+        if username == user:
+            alignment = "right"
+            background = "#DCF8C6"
+        else:
+            alignment = "left"
+            background = "#E5E5EA"
+
         if message:
             st.markdown(
-            f"""
-            <div style='text-align:right;
-                        background-color:#DCF8C6;
-                        padding:10px;
-                        border-radius:10px;
-                        margin:5px'>
-                <b>{username}</b><br>
-                {message}<br>
-                <small>{time}</small>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+                f"""
+                <div style='text-align:{alignment};
+                            background-color:{background};
+                            padding:10px;
+                            border-radius:10px;
+                            margin:5px'>
+                    <b>{username}</b><br>
+                    {message}<br>
+                    <small>{time}</small>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
         if audio:
             st.audio(audio)
+
         if image:
-            st.image(image,width=250)
-    else:
-        st.markdown(
-            f"""
-            <div style='text-align:left;
-                        background-color:#E5E5EA;
-                        padding:10px;
-                        border-radius:10px;
-                        margin:5px'>
-                <b>{username}</b><br>
-                {message}<br>
-                <small>{time}</small>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-        st.markdown("---")
+            st.image(image, width=250)
 # Input for the user to send a message
 message=st.text_input("Type your message here")
 audio=st.audio_input("record your audio ;")
