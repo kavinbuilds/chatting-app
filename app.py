@@ -13,7 +13,7 @@ c = conn.cursor()
 
 # Create new table
 c.execute("""
-    CREATE TABLE CHAT(
+    CREATE TABLE IF NOT EXISTS CHAT(
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
         USERNAME TEXT,
         MESSAGE TEXT,
