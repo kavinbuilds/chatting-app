@@ -4,12 +4,10 @@ import sqlite3
 import os
 
 # Connect to the SQLite database
+os.makedirs("uploads",exist_ok=True)
 conn=sqlite3.connect('chat.db')
 c=conn.cursor()
-os.makedirs("uploads",exist_ok=True)
 #create the table that sores the user , message and tiime of message
-conn = sqlite3.connect("chat.db")
-c = conn.cursor()
 
 # Create new table
 c.execute("""
@@ -32,6 +30,8 @@ user=st.selectbox("select the username",["kavin😎","mano boss😎","dinesh bha
 messages=c.execute("select username,message,audio,image,time from chat order by id desc").fetchall()
 chat_box = st.container(height=500, border=True)
 
+chat_box = st.container(height=500, border=True)
+
 with chat_box:
 
     for username, message, audio, image, time in messages:
@@ -43,14 +43,17 @@ with chat_box:
             alignment = "left"
             background = "#E5E5EA"
 
+        # Text message
         if message:
             st.markdown(
                 f"""
-                <div style='text-align:{alignment};
-                            background-color:{background};
-                            padding:10px;
-                            border-radius:10px;
-                            margin:5px'>
+                <div style="
+                    text-align:{alignment};
+                    background-color:{background};
+                    padding:10px;
+                    border-radius:10px;
+                    margin:5px;
+                ">
                     <b>{username}</b><br>
                     {message}<br>
                     <small>{time}</small>
@@ -59,10 +62,46 @@ with chat_box:
                 unsafe_allow_html=True
             )
 
+        # Audio message
         if audio:
+            st.markdown(
+                f"""
+                <div style="
+                    text-align:{alignment};
+                    background-color:{background};
+                    padding:10px;
+                    border-radius:10px;
+                    margin:5px;
+                ">
+                    <b>{username}</b><br>
+                    🎤 Voice message<br>
+                    <small>{time}</small>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
             st.audio(audio)
 
+        # Image message
         if image:
+            st.markdown(
+                f"""
+                <div style="
+                    text-align:{alignment};
+                    background-color:{background};
+                    padding:10px;
+                    border-radius:10px;
+                    margin:5px;
+                ">
+                    <b>{username}</b><br>
+                    🖼️ Image<br>
+                    <small>{time}</small>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
             st.image(image, width=250)
 # Input for the user to send a message
 message=st.text_input("Type your message here")
