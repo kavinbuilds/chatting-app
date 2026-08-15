@@ -2,7 +2,7 @@ import streamlit as st
 from datetime import datetime
 import sqlite3
 import os
-import streamlit_extras.
+import streamlit_extras.stateful_chat import*
 # Connect to the SQLite database
 os.makedirs("uploads",exist_ok=True)
 conn=sqlite3.connect('chat.db')
