@@ -62,44 +62,10 @@ with chat_box:
 
         # Audio message
         if audio:
-            st.markdown(
-                f"""
-                <div style="
-                    text-align:{alignment};
-                    background-color:{background};
-                    padding:10px;
-                    border-radius:10px;
-                    margin:5px;
-                ">
-                    <b>{username}</b><br>
-                    🎤 Voice message<br>
-                    <small>{time}</small>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-
             st.audio(audio)
 
         # Image message
         if image:
-            st.markdown(
-                f"""
-                <div style="
-                    text-align:{alignment};
-                    background-color:{background};
-                    padding:10px;
-                    border-radius:10px;
-                    margin:5px;
-                ">
-                    <b>{username}</b><br>
-                    🖼️ Image<br>
-                    <small>{time}</small>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-
             st.image(image, width=250)
 # Input for the user to send a message
 message=st.text_input("Type your message here")
