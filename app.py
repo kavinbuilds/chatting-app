@@ -11,9 +11,6 @@ os.makedirs("uploads",exist_ok=True)
 conn = sqlite3.connect("chat.db")
 c = conn.cursor()
 
-# Delete old table
-c.execute("DROP TABLE IF EXISTS CHAT")
-
 # Create new table
 c.execute("""
     CREATE TABLE CHAT(
