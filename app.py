@@ -81,11 +81,11 @@ if st.button("send", key="send",type="primary",use_container_width=True,width="s
     image_path=None
     if audio:
         audio_path=f"uploads/audio{filename_time}.wav"
-        with open(audio_path,wb) as f:
+        with open(audio_path,"wb") as f:
             f.write(audio.getvalue())
     if image:
         image_path=f"uploads/image{filename_time}.png"
-        with open(image_path,wb) as f:
+        with open(image_path,"wb") as f:
             f.write(image.getvalue())
     if message.strip()!="" or audio or image:
         c.execute("insert into chat(username,message,audio,image,time) values(?,?,?,?,?)", (user,message,audio_path,image_path,time))
