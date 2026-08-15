@@ -29,11 +29,16 @@ st.markdown("<h1 style='text-align: center; color: #4A90E2;'>Welcome to Boss Cha
 user=st.selectbox("select the username",["kavin😎","mano boss😎","dinesh bhai😎"])
 messages=c.execute("select username,message,audio,image,time from chat order by id desc").fetchall()
 chat_box = st.container(height=500, border=True)
+user_colors = {
+    "kavin😎": "#DCF8C6",
+    "mano boss😎": "#D6E4FF",
+    "dinesh bhai😎": "#FFD6E7"
+}
 
 with chat_box:
 
     for username, message, audio, image, time in messages:
-
+        background = user_colors.get(username, "#E5E5EA")
         # Right side for current user
         if username == user:
             alignment = "right"
@@ -41,13 +46,19 @@ with chat_box:
             alignment = "left"
 
         with st.container(border=True):
-
+            
             # Username and time
             st.markdown(
                 f"""
-                <div style="text-align:{alignment};">
+                <div style="
+                    background-color:{background};
+                    padding:10px;
+                    border-radius:10px;
+                ">
                     <b>{username}</b>
-                    <small style="margin-left:10px;">{time}</small>
+                    <small style="margin-left:10px;">
+                        {time}
+                    </small>
                 </div>
                 """,
                 unsafe_allow_html=True
