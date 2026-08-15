@@ -87,5 +87,4 @@ if st.button("send", key="send",type="primary",use_container_width=True,width="s
         c.execute("insert into chat(username,message,time) values(?,?,?)", (user, message, time))
         conn.commit()
         st.rerun()
-    if image:
         
