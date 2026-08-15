@@ -73,7 +73,7 @@ for username,message,audio,image,time in messages:
 # Input for the user to send a message
 message=st.text_input("Type your message here")
 audio=st.audio_input("record your audio ;")
-image=st.uploader("share your image :",type=["jpeg","jpg","png"])
+image=st.file_uploader("share your image :",type=["jpeg","jpg","png"])
 if st.button("send", key="send",type="primary",use_container_width=True,width="stretch"):
     time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     filename_time=datetime.now().strftime("%Y%m%d_%H%M%S")
