@@ -2,7 +2,7 @@ import streamlit as st
 from datetime import datetime
 import sqlite3
 import os
-
+import streamlit_extras.
 # Connect to the SQLite database
 os.makedirs("uploads",exist_ok=True)
 conn=sqlite3.connect('chat.db')
@@ -83,7 +83,9 @@ with chat_box:
             if image:
                 st.image(image, width=250)
 # Input for the user to send a message
-message=st.text_input("Type your message here")
+with chat(key="my_chat"):
+    if prompt := st.chat_input():
+        add_message("user", prompt, avatar="🧑‍💻")
 audio=st.audio_input("record your audio ;")
 image=st.file_uploader("share your image :",type=["jpeg","jpg","png"])
 if st.button("send", key="send",type="primary",use_container_width=True,width="stretch"):
