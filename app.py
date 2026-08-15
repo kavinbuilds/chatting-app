@@ -84,8 +84,8 @@ with chat_box:
                 st.image(image, width=250)
 # Input for the user to send a message
 with chat(key="my_chat"):
-    if prompt := st.chat_input():
-        add_message("user", prompt, avatar="🧑‍💻")
+    if message:= st.chat_input():
+        add_message("user", message, avatar="🧑‍💻")
 audio=st.audio_input("record your audio ;")
 image=st.file_uploader("share your image :",type=["jpeg","jpg","png"])
 if st.button("send", key="send",type="primary",use_container_width=True,width="stretch"):
