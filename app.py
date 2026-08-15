@@ -34,39 +34,44 @@ with chat_box:
 
     for username, message, audio, image, time in messages:
 
+        # Right side for current user
         if username == user:
             alignment = "right"
-            background = "#DCF8C6"
         else:
             alignment = "left"
-            background = "#E5E5EA"
 
-        # Text message
-        if message:
+        with st.container(border=True):
+
+            # Username and time
             st.markdown(
                 f"""
-                <div style="
-                    text-align:{alignment};
-                    background-color:{background};
-                    padding:10px;
-                    border-radius:10px;
-                    margin:5px;
-                ">
-                    <b>{username}</b><br>
-                    {message}<br>
-                    <small>{time}</small>
+                <div style="text-align:{alignment};">
+                    <b>{username}</b>
+                    <small style="margin-left:10px;">{time}</small>
                 </div>
                 """,
                 unsafe_allow_html=True
             )
 
-        # Audio message
-        if audio:
-            st.audio(audio)
+            # Text
+            if message:
+                st.markdown(
+                    f"""
+                    <div style="text-align:{alignment};
+                                padding:5px;">
+                        {message}
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
 
-        # Image message
-        if image:
-            st.image(image, width=250)
+            # Audio
+            if audio:
+                st.audio(audio)
+
+            # Image
+            if image:
+                st.image(image, width=250)
 # Input for the user to send a message
 message=st.text_input("Type your message here")
 audio=st.audio_input("record your audio ;")
