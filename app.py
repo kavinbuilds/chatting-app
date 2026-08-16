@@ -130,9 +130,6 @@ if st.session_state.get("confirm_delete", False):
 
     with col2:
         if st.button("Cancel"):
-            st.rerun()
-with st.side_menu(
-
             st.session_state.confirm_delete = False
             st.rerun()
 with st.sidebar:
