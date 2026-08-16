@@ -66,7 +66,7 @@ with chat_box:
 
             # Text
             if message:
-               add_message("user", message, avatar=avatars[user])
+               add_message("user", message, avatar=😊)
             # Audio
             if audio:
                 st.audio(audio)
