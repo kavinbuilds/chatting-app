@@ -39,13 +39,7 @@ with chat(key="my_chat"):
 
     message = st.chat_input("Type your message...")
 
-    if message:
-
-        add_message(
-            "user",
-            message,
-            avatar=avatars[user]
-        )
+    
 
     for username, message, audio, image, time in messages:
         background = user_colors.get(username, "#E5E5EA")
