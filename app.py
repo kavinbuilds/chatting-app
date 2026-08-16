@@ -34,22 +34,18 @@ user_colors = {
     "mano boss": "#D6E4FF",
     "dinesh bhai": "#FFD6E7"
 }
-
-
-    
-
-    for username, message, audio, image, time in messages:
-        background = user_colors.get(username, "#E5E5EA")
+for username, message, audio, image, time in messages:
+    background = user_colors.get(username, "#E5E5EA")
         # Right side for current user
-        if username == user:
-            alignment = "right"
-        else:
-            alignment = "left"
+    if username == user:
+        alignment = "right"
+    else:
+        alignment = "left"
 
-        with st.container(height="500",border=True):
+    with st.container(height="500",border=True):
             
             # Username and time
-            st.markdown(
+        st.markdown(
                 f"""
                 <div style="
                     background-color:{background};
@@ -64,20 +60,20 @@ user_colors = {
                 """,
                 unsafe_allow_html=True
             )
-        with chat(key="my_chat"):
+    with chat(key="my_chat"):
 
-            message = st.chat_input("Type your message...")
+        message = st.chat_input("Type your message...")
 
             # Text
-            if message:
-               add_message("user", message, avatar="😊")
+        if message:
+            add_message("user", message, avatar="😊")
             # Audio
-            if audio:
-                st.audio(audio)
+        if audio:
+            st.audio(audio)
 
             # Image
-            if image:
-                st.image(image, width=250)
+        if image:
+            st.image(image, width=250)
 # Input for the user to send a message
         
 audio=st.audio_input("record your audio ;")
