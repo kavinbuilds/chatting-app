@@ -26,13 +26,13 @@ conn.commit()
 st.set_page_config(page_title="boss chat 🗣️", page_icon=":speech_balloon:", layout="centered")
 # Auto-refresh every 5 seconds to update the chat messages
 # Get the username from the user
-user=st.selectbox("select the username",["kavin😎","mano boss😎","dinesh bhai😎"])
+user=st.selectbox("select the username",["kavin","mano boss","dinesh bhai"])
 messages=c.execute("select username,message,audio,image,time from chat order by id desc").fetchall()
 chat_box = st.container(height=500, border=True)
 user_colors = {
-    "kavin😎": "#DCF8C6",
-    "mano boss😎": "#D6E4FF",
-    "dinesh bhai😎": "#FFD6E7"
+    "kavin": "#DCF8C6",
+    "mano boss": "#D6E4FF",
+    "dinesh bhai": "#FFD6E7"
 }
 
 with chat_box:
