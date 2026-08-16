@@ -74,8 +74,7 @@ with chat_box:
             if image:
                 st.image(image, width=250)
 # Input for the user to send a message
-with chat(key="my_chat"):
-    if message:= st.chat_input():
+message= st.chat_input()
         
 audio=st.audio_input("record your audio ;")
 image=st.file_uploader("share your image :",type=["jpeg","jpg","png"])
