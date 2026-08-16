@@ -28,7 +28,7 @@ st.set_page_config(page_title="boss chat 🗣️", page_icon=":speech_balloon:",
 # Get the username from the user
 user=st.selectbox("select the username",["kavin","mano boss","dinesh bhai"])
 messages=c.execute("select username,message,audio,image,time from chat order by id desc").fetchall()
-chat_box = st.container(height=400, border=True)
+chat_box = st.container(height=200, border=True)
 user_colors = {
     "kavin": "#DCF8C6",
     "mano boss": "#D6E4FF",
