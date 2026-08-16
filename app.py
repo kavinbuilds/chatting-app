@@ -7,6 +7,7 @@ from streamlit_extras.stateful_chat import*
 os.makedirs("uploads",exist_ok=True)
 conn=sqlite3.connect('chat.db')
 c=conn.cursor()
+avator={"kavin:"mobile version.png"}
 #create the table that sores the user , message and tiime of message
 
 # Create new table
@@ -65,7 +66,7 @@ with chat_box:
 
             # Text
             if message:
-               add_message("user", message, avatar="🧑‍💻")
+               add_message("user", message, avatar=avatar[user])
             # Audio
             if audio:
                 st.audio(audio)
