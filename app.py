@@ -35,9 +35,6 @@ user_colors = {
     "dinesh bhai": "#FFD6E7"
 }
 
-with chat(key="my_chat"):
-
-    message = st.chat_input("Type your message...")
 
     
 
@@ -67,6 +64,9 @@ with chat(key="my_chat"):
                 """,
                 unsafe_allow_html=True
             )
+        with chat(key="my_chat"):
+
+            message = st.chat_input("Type your message...")
 
             # Text
             if message:
