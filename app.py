@@ -45,7 +45,7 @@ with chat_box:
         else:
             alignment = "left"
 
-        with st.container(border=True):
+        with st.container(height="500",border=True):
             
             # Username and time
             st.markdown(
