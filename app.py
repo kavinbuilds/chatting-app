@@ -130,7 +130,10 @@ if st.session_state.get("confirm_delete", False):
 
     with col2:
         if st.button("Cancel"):
+with st.side_menu(
 
             st.session_state.confirm_delete = False
             st.rerun()
-        
+with st.sidebar:
+    st.title("boss chat")
+    page=st.radio("menu","chat","profile","logout",key="radio_menu")
