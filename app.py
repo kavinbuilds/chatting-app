@@ -35,7 +35,17 @@ user_colors = {
     "dinesh bhai": "#FFD6E7"
 }
 
-with chat_box:
+with chat(key="my_chat"):
+
+    message = st.chat_input("Type your message...")
+
+    if message:
+
+        add_message(
+            "user",
+            message,
+            avatar=avatars[user]
+        )
 
     for username, message, audio, image, time in messages:
         background = user_colors.get(username, "#E5E5EA")
@@ -75,7 +85,6 @@ with chat_box:
             if image:
                 st.image(image, width=250)
 # Input for the user to send a message
-message= st.chat_input()
         
 audio=st.audio_input("record your audio ;")
 image=st.file_uploader("share your image :",type=["jpeg","jpg","png"])
