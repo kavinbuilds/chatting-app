@@ -41,18 +41,13 @@ user = st.selectbox(
 messages = c.execute(
     "SELECT username, message, audio, image, time FROM chat ORDER BY id DESC"
 ).fetchall()
-
-chat_box = st.container(height=500, border=True)
-
 user_colors = {
     "kavin😎": "#DCF8C6",
     "mano boss😎": "#D6E4FF",
     "dinesh bhai😎": "#FFD6E7"
 }
 
-with chat_box:
-
-    for username, message, audio, image, time in messages:
+for username, message, audio, image, time in messages:
 
         background = user_colors.get(username, "#E5E5EA")
 
