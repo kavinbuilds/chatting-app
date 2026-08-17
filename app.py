@@ -107,10 +107,6 @@ with chat_box:
 # Chat input
 message = st.chat_input("Type your message...")
 
-if message:
-    add_message("user", message, avatar="🧑‍💻")
-
-
 # Audio input
 audio = st.audio_input("Record your audio:")
 
