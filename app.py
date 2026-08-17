@@ -143,3 +143,18 @@ if st.session_state.get("confirm_delete", False):
 
             st.session_state.confirm_delete = False
             st.rerun()
+
+                if os.path.isfile(filepath):
+                    os.remove(filepath)
+
+            # Hide confirmation
+            st.session_state.confirm_delete = False
+
+            # Refresh
+            st.rerun()
+
+    with col2:
+        if st.button("Cancel"):
+
+            st.session_state.confirm_delete = False
+            st.rerun()
