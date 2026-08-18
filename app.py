@@ -46,57 +46,44 @@ user_colors = {
     "mano boss😎": "#D6E4FF",
     "dinesh bhai😎": "#FFD6E7"
 }
+chats=st.chatbox()
+with chats:
+    for username, message, audio, image, time in messages:
 
-for username, message, audio, image, time in messages:
-
-        background = user_colors.get(username, "#E5E5EA")
+            background = user_colors.get(username, "#E5E5EA")
 
         # Right side for current user
-        if username == user:
-            alignment = "right"
-        else:
-            alignment = "left"
+            if username == user:
+                alignment = "right"
+            else:
+                alignment = "left"
 
-        with st.container(border=True):
+            with st.container(border=True):
 
             # Username and time
-            st.markdown(
-                f"""
-                <div style="
-                    background-color:{background};
-                    padding:10px;
-                    border-radius:10px;
-                ">
-                    <b>{username}</b>
-                    <small style="margin-left:10px;">
-                        {time}
-                    </small>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
+                st.markdown(f"""<div style="background-color:{background};padding:10px;border-radius:10px;"><b>{username}</b><small style="margin-left:10px;">{time}</small></div>""",unsafe_allow_html=True)
 
             # Text
-            if message:
-                st.markdown(
-                    f"""
-                    <div style="
-                        text-align:{alignment};
-                        padding:5px;
-                    ">
-                        {message}
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
+                if message:
+                    st.markdown(
+                        f"""
+                        <div style="
+                            text-align:{alignment};
+                            padding:5px;
+                        ">
+                            {message}
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
 
             # Audio
-            if audio:
-                st.audio(audio)
+                if audio:
+                    st.audio(audio)
 
             # Image
-            if image:
-                st.image(image, width=250)
+                if image:
+                    st.image(image, width=250)
 
 
 # Chat input
