@@ -2,7 +2,6 @@ import streamlit as st
 from datetime import datetime
 import sqlite3
 import os
-from streamlit_extras.stateful_chat import chat, add_message
 
 # Create uploads folder
 os.makedirs("uploads", exist_ok=True)
