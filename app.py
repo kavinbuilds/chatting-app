@@ -46,7 +46,7 @@ user_colors = {
     "mano boss😎": "#D6E4FF",
     "dinesh bhai😎": "#FFD6E7"
 }
-chats=st.chatbox()
+chats=st.container(height=300,border=True)
 with chats:
     for username, message, audio, image, time in messages:
 
