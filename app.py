@@ -54,7 +54,7 @@ with chats:
         # Right side for current user
            if username == user:
                 alignment = "right"
-            else:
+           else:
                 alignment = "left"
 
             with st.container(border=True):
