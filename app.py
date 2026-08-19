@@ -49,10 +49,10 @@ chats=st.container(height=300,border=True)
 with chats:
     for username, message, audio, image, time in messages:
 
-            background = user_colors.get(username, "#E5E5EA")
+           background = user_colors.get(username, "#E5E5EA")
 
         # Right side for current user
-            if username == user:
+           if username == user:
                 alignment = "right"
             else:
                 alignment = "left"
